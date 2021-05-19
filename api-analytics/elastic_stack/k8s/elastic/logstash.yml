@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logstash
+  labels:
+    k8s-app: logstash
+    version: v7.12.0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: logstash
+      version: v7.12.0
+  template:
+    metadata:
+      labels:
+        k8s-app: logstash
+        version: v7.12.0
+    spec:
+      containers:
+      - image: docker.elastic.co/logstash/logstash:7.12.0
+        name: logstash
+        env:
+        - name: ELASTICSEARCH_HOSTS
+          value: http://elasticsearch:9200
+        resources: {}
+        volumeMounts:
+        - name: pipeline
+          mountPath: /usr/share/logstash/pipeline/
+        - name: idx-template
+          mountPath: /usr/share/logstash/templates/
+      volumes:
+      - name: pipeline
+        configMap:
+          name: logstash-pipeline
+      - name: idx-template
+        configMap:
+          name: es-idx-template
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash
+spec:
+  ports:
+  - name: "access-logs" 
+    port: 5400
+  selector:
+    k8s-app: logstash
+    version: v7.12.0

@@ -1,0 +1,1 @@
+{"index_patterns":"tml_access_logs*","version":1,"settings":{"index.refresh_interval":"30s"},"mappings":{"properties":{"geoip.location":{"type":"geo_point"},"status":{"type":"short"},"src_ip":{"type":"ip"}}}}

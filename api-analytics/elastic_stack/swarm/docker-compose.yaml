@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
+    environment:
+      - discovery.type=single-node
+    networks:
+      - ml5
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.12.0
+    secrets:
+      - source: logstash_pipeline
+        target: /usr/share/logstash/pipeline/logstash.conf
+      - source: es_index_template
+        target: /usr/share/logstash/templates/index_template.json
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - 5400:5400
+    networks:
+      - ml5
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.12.0
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    networks:
+      - ml5
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5601"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+secrets:
+  logstash_pipeline:
+    file: ../configs/logstash/logstash.conf
+  es_index_template:
+    file: ../configs/logstash/index_template.json
+networks:
+  ml5:
+   external: true
