@@ -1,18 +1,18 @@
 # API Analytics with TIBCO Spotfire®
 
-The TIBCO Spotfire® Analytics file provided in the folder includes sample dashboards to quickly and easily start analyzing your API traffic. This analytics file can be configured to work with both TIBCO Mashery® Local and TIBCO Cloud™ Mashery®.
+The TIBCO Spotfire® Analytics file provided in the folder includes sample dashboards to quickly and easily start analyzing your API traffic.
 
-For more information on the provided dashboards, visit [TIBCO Mashery Local - API Analytics | TIBCO Community](https://community.tibco.com/wiki/tibco-mashery-local-api-analytics)
+For more information on the provided dashboards, visit [TIBCO Cloud API Management - API Analytics | TIBCO Community](https://community.tibco.com/wiki/tibco-cloud-api-management-api-analytics)
 
-Tested with TIBCO Mashery Local 5.3.1 and should be compatible with newer versions.
+Tested with TIBCO Cloud API Management - Local Edition 5.3.1 and should be compatible with newer versions.
 
 Built on - TIBCO Spotfire® Desktop 11.1.0
 
 
 ## Table of Contents
 1. [Database Setup](#database-setup)
-    1. [TIBCO Mashery Local](#tibco-mashery-local)
-    2. [TIBCO Cloud Mashery](#tibco-cloud-mashery)
+    1. [TIBCO Cloud API Management - Local Edition](#tibco-cloud-api-management-local-edition)
+    2. [TIBCO Cloud API Management](#tibco-cloud-api-management)
 2. [Configure TIBCO Spotfire](#configure-tibco-spotfire)  
 
 
@@ -22,12 +22,12 @@ Built on - TIBCO Spotfire® Desktop 11.1.0
 This section describes how to setup your database for access logs and configure the product to populate data.  
 Data Definition Language (DDL) scripts are provided for Postgres and MySQL.
 
-### **TIBCO Mashery Local**
-TIBCO Mashery Local provides a [Database Recipe](https://docs.tibco.com/pub/mash-local/5.4.0/doc/html/GUID-4036FB07-6A96-4536-BF21-73B26CF7778C.html) to export access logs into a SQL database. Currently supported databases are Postgres 9.2+ and MySQL 5.5+.<br><br>
+### **TIBCO Cloud API Management Local Edition**
+TIBCO Cloud API Management - Local Edition provides a [Database Recipe](https://docs.tibco.com/pub/mash-local/5.4.0/doc/html/GUID-4036FB07-6A96-4536-BF21-73B26CF7778C.html) to export access logs into a SQL database. Currently supported databases are Postgres 9.2+ and MySQL 5.5+.<br><br>
 
-### **TIBCO Cloud Mashery**
-For TIBCO Cloud Mashery, Enriched Call Log Streams along with a TIBCO Flogo® application can be used to capture access logs and insert them into a database.   
-You will need a subscription to both TIBCO Cloud™ Mashery and TIBCO Cloud™ Integration for this setup. 
+### **TIBCO Cloud API Management**
+For TIBCO Cloud API Management, Enriched Call Log Streams along with a TIBCO Flogo® application can be used to capture access logs and insert them into a database.   
+You will need a subscription to both TIBCO Cloud™ API Management and TIBCO Cloud™ Integration for this setup. 
 
 ![High Level Design](./assets/high-level-design.png)
 

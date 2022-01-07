@@ -1,5 +1,5 @@
 # Samples and Templates for TIBCO Cloud™ API Management
-**TIBCO Cloud™ Mashery** delivers market-leading full lifecycle API management capabilities for enterprises adopting cloud-native development and deployment practices, such as DevOps, Microservices, and Containers. Its rich set of capabilities includes API creation, productization, security, and analytics of your API program and community of developers.
+**TIBCO Cloud™ API Management** delivers market-leading full lifecycle API management capabilities for enterprises adopting cloud-native development and deployment practices, such as DevOps, Microservices, and Containers. Its rich set of capabilities includes API creation, productization, security, and analytics of your API program and community of developers.
 
 
 This repository includes samples and templates focused on extending the capabilites of API management platform by leveraging industry standard Open Source tooling. 
@@ -20,4 +20,4 @@ This repository is governed by the license specified in the [license file](LICEN
 ## Help
 This repository is a collaborative space for sharing samples for TIBCO Cloud API management products. The samples provided here are maintained and supported by the user community. For raising any issues or questions related to the samples provided here please create a GitHub issue.
 
-If you would like to contribute, please send us a note at mashery-pm@tibco.com
+If you would like to contribute, please send us a note at tcapim-pm@tibco.com
