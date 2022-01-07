@@ -1,9 +1,9 @@
 # API Analytics with Elastic Stack
 **[Elastic Stack](https://www.elastic.co/elastic-stack)** is well known for its powerful data indexing, searching and analytics capabilities. The samples provided in this folder will help to quickly set up the elastic stack along with sample dashboards on Kubernetes and Docker Swarm.   
 
-These samples were designed for TIBCO Mashery® Local, though it would be possible to the TIBCO Cloud Mashery ECLS along with Logstash websocket receiver to analyse the TIBCO Cloud Mashery API traffic.
+These samples were designed for TIBCO Cloud™ API Management - Local Edition, though it would be possible to the TIBCO Cloud™ API Management ECLS along with Logstash websocket receiver to analyse the TIBCO Cloud Mashery API traffic.
 
-Tested with TIBCO Mashery® Local 5.3.1 and should be compatible with newer versions.
+Tested with TIBCO Cloud™ API Management - Local Edition 5.3.1 and should be compatible with newer versions.
 
 ## Table of Contents
 1. [High-Level Design](#high-level-design)
@@ -19,7 +19,7 @@ Tested with TIBCO Mashery® Local 5.3.1 and should be compatible with newer vers
 
 
 ## High-Level Design
-The setup consists of Logstash, Elasticsearch & Kibana containers deployed in the same cluster as TIBCO Mashery Local. The [Log Service](https://docs.tibco.com/pub/mash-local/5.4.0/doc/html/GUID-F09C3124-7ECC-4356-8CC5-7C4CE7DB69AE.html) is configured to forward logs to the Logstash TCP receiver.
+The setup consists of Logstash, Elasticsearch & Kibana containers deployed in the same cluster as TIBCO Cloud API Management - Local Edition. The [Log Service](https://docs.tibco.com/pub/mash-local/5.4.0/doc/html/GUID-F09C3124-7ECC-4356-8CC5-7C4CE7DB69AE.html) is configured to forward logs to the Logstash TCP receiver.
 Logstash enriches the incoming traffic logs and ingests it into Elasticsearch. Kibana is then used to visualize the logs and dashboards. 
 
 ![High Level Design](./assets/high-level-design.png)
@@ -68,7 +68,7 @@ Check the logs of logstash, elasticsearch and kibana containers to ensure that t
 
 
 ## Configuring TML Log Service
-TIBCO Mashery Local provides an access log exporting feature to various output destination. In this setup, the log service is configured to forward access logs to Logstash on TCP port 5400.
+API Management - Local Edition provides an access log exporting feature to various output destination. In this setup, the log service is configured to forward access logs to Logstash on TCP port 5400.
 
 To configure the log service, use the provided [json](./configs/mashery_logforward.json) and follow these steps:  
 1. Copy mashery_logforward.json to cm container  
@@ -81,7 +81,7 @@ Copy the log service component Id.
 4. Configure log service  
 `cm import config --componentType logservice --componentId <componentId> --file mashery_logforward.json`
 
-The detailed steps to import and validate config change are provided in the TIBCO Mashery Local [documentation](https://docs.tibco.com/pub/mash-local/5.4.0/doc/html/GUID-C01F77C2-CDF8-46E1-BBB5-0BE850F283A7.html).
+The detailed steps to import and validate config change are provided in the Local Edition [documentation](https://docs.tibco.com/pub/mash-local/5.4.0/doc/html/GUID-C01F77C2-CDF8-46E1-BBB5-0BE850F283A7.html).
 
 
 ## Deploying to other topologies
