@@ -1,0 +1,15 @@
+{
+  "index_patterns": [
+    "apim_main"
+  ],
+  "data_stream": {},
+  "composed_of": [
+    "apim_main_settings",
+    "apim_common_mappings",
+    "apim_main_mappings"
+  ],
+  "priority": 1,
+  "_meta": {
+    "description": "Index template for APIM raw logs"
+  }
+}

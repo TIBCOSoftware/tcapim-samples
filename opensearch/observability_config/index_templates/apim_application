@@ -1,0 +1,15 @@
+{
+  "index_patterns": [
+    "apim_application_logs"
+  ],
+  "data_stream": {},
+  "composed_of": [
+    "apim_application_settings",
+    "apim_common_mappings",
+    "apim_application_common_mappings"
+  ],
+  "priority": 1,
+  "_meta": {
+    "description": "Index template for APIM application logs"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "template": {
+    "mappings": {
+      "properties": {
+        "host": {
+          "type": "keyword"
+        },
+        "log_shipper_time": {
+          "type": "date",
+          "format": "epoch_second"
+        },
+        "index_name": {
+          "type": "keyword"
+        },
+        "time_key": {
+          "type": "keyword"
+        },
+        "source": {
+          "type": "keyword"
+        },
+        "sourcetype": {
+          "type": "keyword"
+        },
+        "log": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "search_uuid": {
+          "type": "keyword"
+        },
+        "time": {
+          "type": "text"
+        },
+        "stream": {
+          "type": "keyword"
+        },
+        "_p": {
+          "type": "keyword"
+        },
+        "class": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+    "policy": {
+        "description": "Policy to rollover the apim_main data stream",
+        "default_state": "active_state",
+        "states": [
+            {
+                "name": "active_state",
+                "actions": [
+                    {
+                        "retry": {
+                            "count": 3,
+                            "backoff": "exponential",
+                            "delay": "1m"
+                        },
+                        "rollover": {
+                            "min_index_age": "<%=apim_main_rollover_policy_rollover%>"
+                        }
+                    }
+                ],
+                "transitions": [
+                    {
+                        "state_name": "warm_state",
+                        "conditions": {
+                            "min_index_age": "<%=apim_main_rollover_policy_warm_migration%>"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "warm_state",
+                "actions": [
+                    {
+                        "retry": {
+                            "count": 3,
+                            "backoff": "exponential",
+                            "delay": "1m"
+                        },
+                        "replica_count": {
+                            "number_of_replicas": 0
+                        }
+                    },
+                    {
+                        "retry": {
+                            "count": 3,
+                            "backoff": "exponential",
+                            "delay": "1m"
+                        },
+                        "warm_migration": {}
+                    }
+                ],
+                "transitions": [
+                    {
+                        "state_name": "cold_state",
+                        "conditions": {
+                            "min_index_age": "<%=apim_main_rollover_policy_cold_migration%>"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "cold_state",
+                "actions": [
+                    {
+                        "retry": {
+                            "count": 3,
+                            "backoff": "exponential",
+                            "delay": "1m"
+                        },
+                        "cold_migration": {
+                          "timestamp_field": "request_time"
+                        }
+                    }
+                ],
+                "transitions": [
+                    {
+                        "state_name": "delete_state",
+                        "conditions": {
+                            "min_index_age": "<%=apim_main_rollover_policy_retention%>"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "delete_state",
+                "actions": [
+                    {
+                        "retry": {
+                            "count": 3,
+                            "backoff": "exponential",
+                            "delay": "1m"
+                        },
+                        "cold_delete": {}
+                    }
+                ],
+                "transitions": []
+            }
+        ],
+        "ism_template": [
+            {
+                "index_patterns": [
+                    "apim_main"
+                ],
+                "priority": 1
+            }
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "index_patterns": [
+    "apim_debug_logs"
+  ],
+  "data_stream": {},
+  "composed_of": [
+    "apim_debug_settings",
+    "apim_common_mappings",
+    "apim_application_common_mappings"
+  ],
+  "priority": 1,
+  "_meta": {
+    "description": "Index template for APIM debug logs"
+  }
+}

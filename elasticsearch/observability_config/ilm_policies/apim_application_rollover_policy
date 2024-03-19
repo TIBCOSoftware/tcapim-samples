@@ -1,0 +1,50 @@
+{
+  "policy": {
+    "_meta": {
+      "description": "Policy to rollover the apim_application data stream",
+      "project": {
+        "name": "apim_application_rollover_policy",
+        "department": "apim_application_rollover_policy"
+      }
+    },
+    "phases": {
+      "warm": {
+        "min_age": "<%=apim_application_rollover_policy_warm_migration%>",
+        "actions": {
+          "set_priority": {
+            "priority": 50
+          },
+          "allocate": {
+            "number_of_replicas": 0
+          }
+        }
+      },
+      "cold": {
+        "min_age": "<%=apim_application_rollover_policy_cold_migration%>",
+        "actions": {
+          "set_priority": {
+            "priority": 0
+          }
+        }
+      },
+      "hot": {
+        "min_age": "0ms",
+        "actions": {
+          "rollover": {
+            "max_primary_shard_size": "50gb",
+            "max_age": "<%=apim_application_rollover_policy_rollover%>"
+          },
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+      "delete": {
+        "min_age": "<%=apim_application_rollover_policy_retention%>",
+        "actions": {
+          "delete": {}
+        }
+      }
+    }
+  }
+}

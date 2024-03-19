@@ -1,0 +1,53 @@
+{
+    "policy": {
+        "description": "Policy to rollover the apim_debug data stream",
+        "default_state": "active_state",
+        "states": [
+            {
+                "name": "active_state",
+                "actions": [
+                    {
+                        "retry": {
+                            "count": 3,
+                            "backoff": "exponential",
+                            "delay": "1m"
+                        },
+                        "rollover": {
+                            "min_index_age": "<%=apim_debug_rollover_policy_rollover%>"
+                        }
+                    }
+                ],
+                "transitions": [
+                    {
+                        "state_name": "delete_state",
+                        "conditions": {
+                            "min_index_age": "<%=apim_debug_rollover_policy_retention%>"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "delete_state",
+                "actions": [
+                    {
+                        "retry": {
+                            "count": 3,
+                            "backoff": "exponential",
+                            "delay": "1m"
+                        },
+                        "cold_delete": {}
+                    }
+                ],
+                "transitions": []
+            }
+        ],
+        "ism_template": [
+            {
+                "index_patterns": [
+                    "apim_debug_logs"
+                ],
+                "priority": 1
+            }
+        ]
+    }
+}

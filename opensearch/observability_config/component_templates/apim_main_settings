@@ -1,0 +1,9 @@
+{
+  "template": {
+    "settings": {
+      "index.number_of_shards": "<%=component_templates_apim_main_settings_number_of_shards%>",
+      "index.number_of_replicas": "<%=component_templates_apim_main_settings_number_of_replicas%>",
+      "index.refresh_interval": "1s"
+    }
+  }
+}
