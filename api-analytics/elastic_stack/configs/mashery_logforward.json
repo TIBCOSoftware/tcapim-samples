@@ -1,5 +1,0 @@
-{
-    "td_agent_output_channelType" : "TCP",
-    "td_agent_out_tcp_host" : "logstash",
-    "td_agent_out_tcp_port" : "5400"
-}
